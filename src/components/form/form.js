@@ -24,7 +24,7 @@ const validateName = value => {
 const validateNumber = value => {
   let errorMessage;
   if (
-    !/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i.test(
+    !/\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}/i.test(
       value
     )
   ) {
@@ -35,7 +35,7 @@ const validateNumber = value => {
 };
 
 //usage
-export const FormAddingContact = ({ onAdd }) => (
+export const ContactForm = ({ onAdd }) => (
   <Formik
     initialValues={{
       name: '',
@@ -55,19 +55,18 @@ export const FormAddingContact = ({ onAdd }) => (
           type="text"
           name="name"
           placeholder="Taras Shevchenko"
-        >
-          {errors.name && touched.name ? <div>{errors.name}</div> : null}
-        </StyledField>
+        ></StyledField>
+        {errors.name && touched.name ? <div>{errors.name}</div> : null}
+        {/* <ErrorMessage name="name" /> */}
         <Label htmlFor="number">Number</Label>
         <StyledField
           validate={validateNumber}
           type="tel"
           name="number"
           placeholder="0501234567"
-        >
-          {errors.number && touched.number ? <div>{errors.number}</div> : null}
-        </StyledField>
-
+        ></StyledField>
+        {errors.number && touched.number ? <div>{errors.number}</div> : null}
+        {/* <ErrorMessage name="number" /> */}
         <StyledFormButton type="submit">Add contact</StyledFormButton>
       </StyledForm>
     )}

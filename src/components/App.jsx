@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { FormAddingContact } from './form/form';
+import { ContactForm } from './form/form';
 import { ContactList } from './contact-list/contact-list';
-import { ContactFilter } from './filter/filter';
+import { Filter } from './filter/filter';
 import { GlobalStyle } from './GlobalStyle';
 
 export class App extends Component {
@@ -21,18 +21,26 @@ export class App extends Component {
 
   addContact = newContact => {
     // console.log(newContact);
+
     const checkName = this.state.contacts.find(
       contact => newContact.name === contact.name
     );
 
+    const checkNumber = this.state.contacts.find(
+      contact => newContact.number === contact.number
+    );
+
     if (checkName) {
       return alert(`${newContact.name} is already in contacts.`);
+    } else if (checkNumber) {
+      return alert(`${newContact.number} is already in contacts.`);
+    } else {
+      this.setState(prevState => {
+        return {
+          contacts: [...prevState.contacts, newContact],
+        };
+      });
     }
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, newContact],
-      };
-    });
   };
 
   contactFilter = newContact => {
@@ -64,9 +72,9 @@ export class App extends Component {
     return (
       <div>
         <h2>Phonebook</h2>
-        <FormAddingContact onAdd={this.addContact} />
+        <ContactForm onAdd={this.addContact} />
         <h2>Contacts</h2>
-        <ContactFilter filter={filter} onChange={this.contactFilter} />
+        <Filter filter={filter} onChange={this.contactFilter} />
         <ContactList contacts={visibleContacts} onDelete={this.onDelete} />
         <GlobalStyle />
       </div>

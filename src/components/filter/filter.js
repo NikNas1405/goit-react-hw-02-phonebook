@@ -1,6 +1,6 @@
 import { TextFilter, InputFilter, ContactFilterDiv } from './filter.styled';
 
-export const ContactFilter = ({ filter, onChange }) => {
+export const Filter = ({ filter, onChange }) => {
   return (
     <ContactFilterDiv>
       <TextFilter> Find contacts by name </TextFilter>
