@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-import { Basic } from './form';
-import { ContactList } from './contact-list';
+import { FormAddingContact } from './form/form';
+import { ContactList } from './contact-list/contact-list';
+import { ContactFilter } from './filter/filter';
+import { GlobalStyle } from './GlobalStyle';
 
 export class App extends Component {
   state = {
@@ -11,6 +13,7 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+
     filter: '',
     name: '',
     number: '',
@@ -32,11 +35,27 @@ export class App extends Component {
     });
   };
 
+  contactFilter = newContact => {
+    this.setState({
+      filter: newContact,
+    });
+  };
+
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
+    return (
+      contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      ) || contacts
     );
+  };
+
+  onDelete = id => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(contact => contact.id !== id),
+      };
+    });
   };
 
   render() {
@@ -44,12 +63,12 @@ export class App extends Component {
     const visibleContacts = this.getVisibleContacts();
     return (
       <div>
-        <h1>Phonebook</h1>
-        <Basic onAdd={this.addContact} />
+        <h2>Phonebook</h2>
+        <FormAddingContact onAdd={this.addContact} />
         <h2>Contacts</h2>
-        <ContactList
-          contacts={visibleContacts}
-        />
+        <ContactFilter filter={filter} onChange={this.contactFilter} />
+        <ContactList contacts={visibleContacts} onDelete={this.onDelete} />
+        <GlobalStyle />
       </div>
     );
   }

@@ -1,6 +1,13 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
+
+import {
+  StyledFormButton,
+  StyledForm,
+  StyledField,
+  Label,
+} from './form.styled';
 
 // Synchronous validation function
 const validateName = value => {
@@ -28,7 +35,7 @@ const validateNumber = value => {
 };
 
 //usage
-export const Basic = ({ onAdd }) => (
+export const FormAddingContact = ({ onAdd }) => (
   <Formik
     initialValues={{
       name: '',
@@ -41,28 +48,28 @@ export const Basic = ({ onAdd }) => (
     }}
   >
     {({ errors, touched }) => (
-      <Form>
-        <label htmlFor="name">Name</label>
-        <Field
+      <StyledForm>
+        <Label htmlFor="name">Name</Label>
+        <StyledField
           validate={validateName}
           type="text"
           name="name"
           placeholder="Taras Shevchenko"
         >
           {errors.name && touched.name ? <div>{errors.name}</div> : null}
-        </Field>
-        <label htmlFor="number">Number</label>
-        <Field
+        </StyledField>
+        <Label htmlFor="number">Number</Label>
+        <StyledField
           validate={validateNumber}
           type="tel"
           name="number"
           placeholder="0501234567"
         >
           {errors.number && touched.number ? <div>{errors.number}</div> : null}
-        </Field>
+        </StyledField>
 
-        <button type="submit">Add contact</button>
-      </Form>
+        <StyledFormButton type="submit">Add contact</StyledFormButton>
+      </StyledForm>
     )}
   </Formik>
 );
