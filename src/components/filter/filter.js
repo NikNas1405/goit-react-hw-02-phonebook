@@ -1,4 +1,4 @@
-import { TextFilter, InputFilter, ContactFilterDiv } from './filter.styled';
+import { TextFilter, InputFilter, ContactFilterDiv } from './Filter.styled';
 
 export const Filter = ({ filter, onChange }) => {
   return (

@@ -3,7 +3,7 @@ import {
   ContactListItem,
   ContactListItemText,
   ContactListItemButton,
-} from './contact-list.styled';
+} from './ContactList.styled';
 
 export const ContactList = ({ contacts, onDelete }) => {
   return (

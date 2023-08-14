@@ -7,7 +7,7 @@ import {
   StyledForm,
   StyledField,
   Label,
-} from './form.styled';
+} from './Form.styled';
 
 // Synchronous validation function
 const validateName = value => {
