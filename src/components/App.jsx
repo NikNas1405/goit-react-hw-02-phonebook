@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { ContactForm } from './Form/Form';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
+import { ContactForm } from './Form/Forms';
+import { ContactList } from './ContactList/ContactLists';
+import { Filter } from './Filter/Filters.js';
 import { GlobalStyle } from './GlobalStyle';
 
 export class App extends Component {
